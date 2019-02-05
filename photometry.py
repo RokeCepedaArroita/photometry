@@ -4,13 +4,15 @@ using configuration settings in your local phot_config.py
 (see example_config folder for a dummy config file).
 It returns the frequencies, flux densities, errors and target information
 and saves results and plots (if these options are set on in the phot_config.py file).
-Source apertures can be set in the source.py file.
+Source apertures can be set in the source.py file. In order to dynamically change the
+source, pass a custom source in a structure like the examples in source.py when you
+call the photometry code (i.e custom_source = your_custom_source).
 
 Example usage:
-nu, flux, flux_err, source = photometry.photometry(custom_source=0, warnings_on=0, verbose=1)
+nu, flux, flux_err, source = photometry.photometry(custom_source=None, warnings_on=False, verbose=True)
 
 
-Version 1.01 [Jan 2019]
+Version 1.02 [Feb 2019]
 Roke Cepeda-Arroita
 Stuart Harper
 roke.cepeda-arroita@manchester.ac.uk
@@ -18,11 +20,8 @@ stuart.harper@manchester.ac.uk
 '''
 
 
-# TODO: add functionality for variable custom_source in order to be able to dinamically change source properties
-# For now, this setting does nothing.
+def photometry(custom_source=None, warnings_on=False, verbose=True):
 
-
-def photometry(custom_source=0, warnings_on=0, verbose=1):
 
     # Import core modules
 
@@ -36,6 +35,12 @@ def photometry(custom_source=0, warnings_on=0, verbose=1):
     from config_phot import targets, maps, saveAperdir, save_aper, save_hist, save_fluxes
 
 
+    # If we have a custom source then set its properties
+
+    if not isinstance(custom_source, type(None)):
+        targets = [custom_source]
+
+
     # Mute warnings
 
     if not warnings_on:
@@ -46,7 +51,6 @@ def photometry(custom_source=0, warnings_on=0, verbose=1):
     # Load Maps
 
     APObj = aperphot.aperphot(maps)
-
 
 
     # Loop Over Targets
@@ -107,6 +111,13 @@ def photometry(custom_source=0, warnings_on=0, verbose=1):
 
 
         print('\n')
+
+
+    # Here add information to the source such as the primary aperture's solid angle, which is crucial for fitting!
+
+    target['primary_sol_ang_sr'] = np.pi*target['ra'][0]*target['rb'][0]*(np.pi/180.)**2 # area of primary aperture in steradians
+    target['background_sol_ang_sr'] = (np.pi*target['ira'][0]*target['irb'][0]-np.pi*target['ira'][0]*target['ifrac'][0]*target['irb'][0]*target['ifrac'][0]) *(np.pi/180.)**2 # area of backround aperture in steradians
+
 
 
     return APObj.nu, flux, err, target

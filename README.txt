@@ -20,4 +20,4 @@ where photometry_folder is your path to the photometry code.
 
 3. Query the program by using (example):
 
-"nu, flux, flux_err, source = photometry.photometry(custom_source=0, warnings_on=0, verbose=1)""
+"nu, flux, flux_err, source = photometry.photometry(custom_source=None, warnings_on=False, verbose=True)"

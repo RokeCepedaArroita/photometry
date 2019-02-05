@@ -1,7 +1,7 @@
 import numpy as np
 import healpy as hp
 import matplotlib.pyplot as plt
-from config_phot import *
+from config_phot import maps, saveAperdir, save_aper, save_hist, save_fluxes
 
 d2r = np.pi/180.
 r2d = 180./np.pi
@@ -49,6 +49,9 @@ class aperphot():
         Returns:
         array of pixels that are within the aperture
         '''
+
+
+
         if isinstance(b, type(None)) or not b:
             b = a
 

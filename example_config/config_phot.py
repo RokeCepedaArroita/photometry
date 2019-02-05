@@ -9,7 +9,7 @@ import source
 import files
 
 
-## Select Target(s)
+## Select Target(s): this will be overwritten if you call photometry with a custom source!
 
 targets = [source.perseus]  # see source.py for options
 
