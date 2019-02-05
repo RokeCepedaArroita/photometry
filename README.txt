@@ -1,8 +1,8 @@
 STRUCTURE ***
+The main script is photometry.py, which uses tools in aperphot.py and bandpasses.py. Paths and properties of input maps can be configured in files.py. Sources and apertures can be configured in source.py.
 
-The main script is photometry.py, which uses tools in aperphot.py and bandpasses.py. Paths and properties of input maps can be configured
-in files.py. Sources and apertures can be configured in source.py.
-
+DEPENCENCIES ***
+healpy, numpy, warnings, matplotlib, mpl_toolkits.mplot3d, os
 
 
 3-STEP PHOTOMETRY GUIDE ***
@@ -20,4 +20,4 @@ where photometry_folder is your path to the photometry code.
 
 3. Query the program by using (example):
 
-"nu, flux, flux_err, source = photometry.photometry(custom_source=None, warnings_on=False, verbose=True)"
+"nu, flux, flux_err, source = photometry.photometry(custom_source=0, warnings_on=0, verbose=1)"
