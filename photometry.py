@@ -72,7 +72,7 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
 
         # Get Flux from aperphot
 
-        flux, err, nu = APObj.AperPhot(lon, lat, target)
+        flux, err, nu = APObj.AperPhot(lon, lat, target, mode=mode, throw_NaN=throw_NaN)
 
         if not isinstance(target['AUX'], type(None)):
             ancil = np.loadtxt(target['AUX'])

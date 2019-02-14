@@ -166,7 +166,7 @@ class aperphot():
         return conversions[mapinfo['unit']]
 
 
-    def AperPhot(self, _lon, _lat, target):
+    def AperPhot(self, _lon, _lat, target, mode='median', throw_NaN=False):
         '''
         lon    - 'longitude of pixel coordinates''
         lat    - latitude of pixel coordinates
@@ -306,13 +306,35 @@ class aperphot():
             been measured (i.e. if only one background out of three possible ones has been entered,
             then take the average only accross that one column that is filled, not all three!)
             '''
-            flux[j] = np.nansum(aperFluxes[j,:]) - np.nanmean(bkgdFluxes[j,indices_to_use]) * nPix[pixType]
+
+            if mode=='mean':
+
+                if not throw_NaN:
+
+                    flux[j] = np.nansum(aperFluxes[j,:]) - np.nanmean(bkgdFluxes[j,indices_to_use]) * nPix[pixType]
+                    err[j] = (np.nanmean(bkgd2Fluxes[j,indices_to_use]) - np.nanmean(bkgdFluxes[j,indices_to_use])**2 )*nPix[pixType]
+                    err[j] += (flux[j]*self.calerr[j])**2  # This is the variance, so at the end the sqrt is returned for a standard deviation
+
+                elif throw_NaN:
+
+                    flux[j] = np.sum(aperFluxes[j,:]) - np.mean(bkgdFluxes[j,indices_to_use]) * nPix[pixType]
+                    err[j] = (np.mean(bkgd2Fluxes[j,indices_to_use]) - np.mean(bkgdFluxes[j,indices_to_use])**2 )*nPix[pixType]
+                    err[j] += (flux[j]*self.calerr[j])**2  # This is the variance, so at the end the sqrt is returned for a standard deviation
 
 
-            # Compute: dS_v
+            if mode=='median':
 
-            err[j] = (np.nanmean(bkgd2Fluxes[j,indices_to_use]) - np.nanmean(bkgdFluxes[j,indices_to_use])**2 )*nPix[pixType]
-            err[j] += (flux[j]*self.calerr[j])**2  # This is the variance, so at the end the sqrt is returned for a standard deviation
+                if not throw_NaN:
+
+                    flux[j] = np.nansum(aperFluxes[j,:]) - np.nanmedian(bkgdFluxes[j,indices_to_use]) * nPix[pixType]
+                    err[j] = (np.nanmean(bkgd2Fluxes[j,indices_to_use]) - np.nanmean(bkgdFluxes[j,indices_to_use])**2 )*nPix[pixType]
+                    err[j] += (flux[j]*self.calerr[j])**2  # This is the variance, so at the end the sqrt is returned for a standard deviation
+
+                elif throw_NaN:
+
+                    flux[j] = np.sum(aperFluxes[j,:]) - np.median(bkgdFluxes[j,indices_to_use]) * nPix[pixType]
+                    err[j] = (np.mean(bkgd2Fluxes[j,indices_to_use]) - np.mean(bkgdFluxes[j,indices_to_use])**2 )*nPix[pixType]
+                    err[j] += (flux[j]*self.calerr[j])**2  # This is the variance, so at the end the sqrt is returned for a standard deviation
 
 
         # Save results to folder

@@ -26,6 +26,12 @@ saveAperdir = '/scratch/nas_falcon/scratch/rca/projects/photometry/results' # wh
 save_fluxes = '/scratch/nas_falcon/scratch/rca/projects/photometry/results' # where to save results
 
 
+## Photometry options
+
+mode = 'median'
+throw_NaN = True
+
+
 ## Select Maps
 
 maps = [files.haslam,

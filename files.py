@@ -60,6 +60,16 @@ Jonas = {'name':'/scratch/nas_falcon/scratch/rca/data/ancillary_data/others/512_
          'color':'#31D63F',
          'CALERR':0.05}
 
+Jonas_Lambda_Orionis = {'name':'/scratch/nas_falcon/scratch/rca/data/ancillary_data/others/Jonas_cropped_lambda_orionis.fits',
+         'inst':'Jonas',
+         'frequency':2.326,
+         'resolution':1.13*(np.pi/180.)**2,
+         'unit':'K',
+         'nside':512,
+         'fmt':'o',
+         'color':'#31D63F',
+         'CALERR':0.05}
+
 
 CBASS = {'name':'/scratch/nas_falcon/scratch/rca/data/ancillary_data/others/cbass_nighttime_512_smth.fits',
           'inst':'C-BASS',
