@@ -7,6 +7,40 @@ Leave these as "None" for the time being since nothing is done with them. These 
 '''
 
 
+lambda_orionis_19_aug_2019 ={'name':'aperture',
+
+      # Source apertures
+      'theta': [-12.00],
+      'phi': [-164.95],
+      'ra': [0.5], # MAKE SURE THIS IS 0.5
+      'rb': [0.5], # MAKE SURE THIS IS 0.5
+      'pang':[0.],
+      'frac':[0],
+
+      # Background apertures
+      'itheta': [-11.6,-11.6],
+      'iphi': [-164.3,-164.3],
+      'ira':[8.,8.],
+      'irb':[8.,8.],
+      'ipang':[-60.,+150.],
+      'ifrac':[1./1.14,1./1.14],
+      'isweep':[25.,40.],
+
+      # Fitting information
+      'frange': None, # Frequency range (GHz)
+      'FitErrs':None,
+      'components':['sync', # Fit for synchrotron
+                    'ff',   # ... free-free
+                    'dust', # ... thermal dust
+                    'cmb',  # ... cmb
+                    'ame'], # ... spinning dust (add a second component?
+      'AUX': None, # List of additional source fluxes from catalogue.
+      'Output': None,
+      'ame_file': None
+      }
+
+
+
 example ={'name':'source_name',
 
           # Source apertures
@@ -54,6 +88,83 @@ example ={'name':'source_name',
 UCHII PAPER SOURCES: these are PLanck AME sources flagged by Clive
 Now we are using the AMI Galactic Plane Survey to study them
 '''
+
+
+Adam1 ={'name':'Adam1',
+
+          # Source apertures
+          'theta': [-42.],
+          'phi': [87.9],
+          'ra': [2.],
+          'rb': [2.],
+          'pang':[0.],
+          'frac':[0.],
+
+          # Background apertures
+          'itheta': [-42.],
+          'iphi': [87.9],
+          'ira':[4.],
+          'irb':[4.],
+          'ipang':[0],
+          'ifrac':[0.7],
+          'isweep':[360.],
+
+          # Initial Parameter guesses
+          'sParams':{'A_ame':None,   # AME amplitude (unit)
+                     'nu_mod':None, # AME centre frequency (GHz)
+                     'EM':None ,   # Emission measure of free-free
+                     'dT': None, # CMB fluctuation amplitude  (unit)
+                     'Tdust': None, # Dust temperature amplitude (K)
+                     'tau': None,   # Dust opacity
+                     'beta': None}, # Spectral index of modified dust BB
+
+          # Fitting information
+          'frange': None, # Frequency range (GHz)
+          'FitErrs':None,
+          'components':None, # ... spinning dust (add a second component?
+          'AUX': None, # List of additional source fluxes from catalogue.
+          'Output': None,
+          'ame_file': None
+          }
+
+
+bubblecentrestuart ={'name':'bubblecentrestuart',
+
+          # Source apertures
+          'theta': [-11.11],
+          'phi': [-164.00],
+          'ra': [0.5],
+          'rb': [0.5],
+          'pang':[0.],
+          'frac':[0.],
+
+          # Background apertures
+          'itheta': [-11.6,-11.6],
+          'iphi': [-164.3,-164.3],
+          'ira':[7.,7.],
+          'irb':[7.,7.],
+          'ipang':[-60.,+150.],
+          'ifrac':[1./1.2,1./1.2],
+          'isweep':[25.,40.],
+
+          # Initial Parameter guesses
+          'sParams':{'A_ame':None,   # AME amplitude (unit)
+                     'nu_mod':None, # AME centre frequency (GHz)
+                     'EM':None ,   # Emission measure of free-free
+                     'dT': None, # CMB fluctuation amplitude  (unit)
+                     'Tdust': None, # Dust temperature amplitude (K)
+                     'tau': None,   # Dust opacity
+                     'beta': None}, # Spectral index of modified dust BB
+
+          # Fitting information
+          'frange': None, # Frequency range (GHz)
+          'FitErrs':None,
+          'components':None, # ... spinning dust (add a second component?
+          'AUX': None, # List of additional source fluxes from catalogue.
+          'Output': None,
+          'ame_file': None
+          }
+
 
 
 S235 ={'name':'S235',
@@ -210,6 +321,44 @@ DNeTGUH942 = {'name':'DNe-TGU-H942',
           'ame_file': None
           }
 
+
+
+M31 = {'name':'M31',
+
+          # Source apertures
+          'theta': [-21.57],
+          'phi': [121.17],
+          'ra': [100./60.],
+          'rb': [70./60.],
+          'pang':[-45.],
+          'frac':[0.],
+
+          # Background apertures
+          'itheta': [-21.57],
+          'iphi': [121.17],
+          'ira':[140./60.],
+          'irb':[98./60.],
+          'ipang':[-45.],
+          'ifrac':[0.714],
+          'isweep':[360.],
+
+          # Initial Parameter guesses
+          'sParams':{'A_ame':None,   # AME amplitude (unit)
+                     'nu_mod':None, # AME centre frequency (GHz)
+                     'EM':None ,   # Emission measure of free-free
+                     'dT': None, # CMB fluctuation amplitude  (unit)
+                     'Tdust': None, # Dust temperature amplitude (K)
+                     'tau': None,   # Dust opacity
+                     'beta': None}, # Spectral index of modified dust BB
+
+          # Fitting information
+          'frange': None, # Frequency range (GHz)
+          'FitErrs':None,
+          'components':None, # ... spinning dust (add a second component?
+          'AUX': None, # List of additional source fluxes from catalogue.
+          'Output': None,
+          'ame_file': None
+          }
 
 
 NGC2174 = {'name':'NGC2174',

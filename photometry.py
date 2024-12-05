@@ -32,7 +32,7 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
 
     # Import input configuration file
 
-    from config_phot import targets, maps, saveAperdir, save_aper, save_hist, save_fluxes
+    from config_phot import targets, maps, saveAperdir, save_aper, save_hist, save_fluxes, mode, throw_NaN, effective_beam_area, scale_random_noise_by_beam_area
 
 
     # If we have a custom source then set its properties
@@ -53,12 +53,22 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
     APObj = aperphot.aperphot(maps)
 
 
+
     # Loop Over Targets
 
     for target in targets:
         nside = int(np.sqrt(APObj.data[0].size/12.))
         lon = []
         lat = []
+
+        # Check the 'low_s2n_treatment' flag and set 'scale_random_noise_by_beam_area'
+        if 'low_s2n_treatment' in target:
+            if target['low_s2n_treatment'] == 'Yes':
+                scale_random_noise_by_beam_area = True
+                print('\nUsing low signal to noise scaling for background noise\n')
+        else:
+            scale_random_noise_by_beam_area = False
+
 
         for i in range(len(APObj.unpix)):
     	    pix = np.arange(APObj.unpix[i])
@@ -69,10 +79,13 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
     	    lon += [_lon]
     	    lat += [_lat]
 
+        # Calculate solid areas of primary and background apertures in steradians
+        target['primary_sol_ang_sr'] = np.pi*target['ra'][0]*target['rb'][0]*(np.pi/180.)**2 # area of primary aperture in steradians
+        target['background_sol_ang_sr'] = (np.pi*target['ira'][0]*target['irb'][0]-np.pi*target['ira'][0]*target['ifrac'][0]*target['irb'][0]*target['ifrac'][0]) *(np.pi/180.)**2 # area of backround aperture in steradians
+
 
         # Get Flux from aperphot
-
-        flux, err, nu = APObj.AperPhot(lon, lat, target, mode=mode, throw_NaN=throw_NaN)
+        flux, err, nu = APObj.AperPhot(lon, lat, target, mode=mode, throw_NaN=throw_NaN, scale_random_noise_by_beam_area=scale_random_noise_by_beam_area, effective_beam_area=effective_beam_area)
 
         if not isinstance(target['AUX'], type(None)):
             ancil = np.loadtxt(target['AUX'])
@@ -115,8 +128,6 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
 
     # Here add information to the source such as the primary aperture's solid angle, which is crucial for fitting!
 
-    target['primary_sol_ang_sr'] = np.pi*target['ra'][0]*target['rb'][0]*(np.pi/180.)**2 # area of primary aperture in steradians
-    target['background_sol_ang_sr'] = (np.pi*target['ira'][0]*target['irb'][0]-np.pi*target['ira'][0]*target['ifrac'][0]*target['irb'][0]*target['ifrac'][0]) *(np.pi/180.)**2 # area of backround aperture in steradians
 
 
 
