@@ -113,9 +113,7 @@ The uncertainty in the flux of the primary aperture is a combination of calibrat
 ### Primary Flux Calculation
 The primary flux is calculated by summing the pixel brightnesses within the primary aperture, subtracting the scaled background contribution:
 
-$$F_{\text{primary}} = \sum_{i \in \text{primary}} I_i - \bar{F}_{\text{background}} \cdot N_{\text{primary}$$
-
-
+$$F_{\text{primary}} = \sum_{i \in \{\text{aperture pixels}\}} I_i - \bar{F}_{\text{background}} \cdot N_{\text{primary}}$$
 
 where:
 - $I_i$ is the flux of pixel $i$ in the primary aperture.
@@ -125,7 +123,7 @@ where:
 ### Background Flux and Variance
 The background flux is estimated using either the mean or median of the background pixels:
 
-$$\bar{F}_{\mathrm{background}} = \frac{1}{N_{\text{background}}} \sum_{i \in \text{background\_pixels}} I_i$$
+$$\bar{F}_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{i \in \{\text{background pixels}\}} I_i$$
 
 where $N_{\text{background}}$ is the number of background pixels.
 
