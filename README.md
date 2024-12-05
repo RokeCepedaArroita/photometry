@@ -9,9 +9,8 @@ This repository offers tools for performing aperture photometry on HEALPix maps,
 ### Features:
 - **Custom Aperture Shapes**: Supports elliptical and circular apertures with adjustable parameters.
 - **Background Subtraction**: Configurable apertures for precise background estimation.
-- **Map Units Handling**: Converts map units (e.g., `mK`, `MJy/sr`) to consistent flux units.
+- **Map Units Handling**: Converts map units (e.g., `mK`, `MJy/sr`) to consistent flux units in Jy.
 - **Error Estimation**: Accounts for calibration uncertainties and random noise.
-- **Integration of Configurable MCMC Settings**: Ready for advanced statistical fitting.
 
 ### Typical Use Case:
 Run photometry on HEALPix maps to extract source flux densities, analyze spectral energy distributions (SEDs), and handle ancillary data for astrophysical analysis.
@@ -108,68 +107,42 @@ FREQ = 4.08E-01   FLUX = 9.39E+01   ERR = 3.87E+01
 ---
 
 
-## Measuring Uncertainties in Flux Calculations
+## Measuring Uncertainties
 
-The flux and its associated error are calculated by summing pixel brightnesses from the primary aperture and accounting for various uncertainties. Below, we describe how the flux and errors are derived from the code and physical considerations.
+### Primary Flux Calculation
+The primary flux is calculated by summing the pixel brightnesses within the primary aperture:
+$$ F_{\text{primary}} = \sum_{i \in \text{aperture pixels}} I_i $$
+where $I_i$ is the intensity of pixel $i$.
 
-### 1. Primary Flux Calculation
-The primary flux is calculated as the sum of the pixel brightnesses in the aperture:
-\[
-F_{\text{primary}} = \sum_{i} I_i
-\]
-where \( I_i \) represents the intensity of the \( i \)th pixel in the primary aperture.
+### Background Flux and Variance
+The background flux is calculated using either the mean or median of the background pixels:
+$$ F_{\text{background}} = \frac{1}{N} \sum_{i \in \text{background pixels}} I_i $$
+where $N$ is the number of background pixels.
 
-### 2. Background Flux and Error Calculations
-The background flux is estimated using pixels outside the primary aperture, typically taken as the mean or median:
-\[
-F_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{j} I_j^{\text{background}}
-\]
-The error in this background flux, considering variance from multiple background regions, is:
-\[
-\text{Var}_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{j} \left(I_j^{\text{background}} - \langle I_{\text{background}} \rangle \right)^2
-\]
+To estimate the error in the background flux, we use the variance:
+$$ \sigma_{\text{background}}^2 = \frac{1}{N} \sum_{i \in \text{background pixels}} (I_i - \bar{I})^2 $$
+where $\bar{I}$ is the mean intensity of the background pixels.
 
-### 3. Random and Calibration Error Components
-The total error in the flux calculation is derived from two main sources:
+### Total Error Calculation
+The total error in the primary flux is obtained by combining the calibration and random variances:
+$$ \sigma_{\text{total}}^2 = \sigma_{\text{random}}^2 + \sigma_{\text{calibration}}^2 $$
+where:
 
-#### a) Calibration Error
-The calibration error accounts for inaccuracies in the calibration of the data:
-\[
-\text{Var}_{\text{calibration}} = (F_{\text{primary}} \cdot \text{calibration\_error})^2
-\]
+- **Calibration Variance**:
+$$ \sigma_{\text{calibration}}^2 = (F_{\text{primary}} \cdot \text{calibration error})^2 $$
 
-#### b) Random Error
-The random error accounts for noise in the data and variations in the background:
-\[
-\text{Var}_{\text{random}} = \text{Var}_{\text{background}} \times N_{\text{primary}}
-\]
-where \( N_{\text{primary}} \) is the number of pixels in the primary aperture.
+- **Random Variance**:
+$$ \sigma_{\text{random}}^2 = \left(\frac{1}{N} \sum_{i \in \text{background pixels}} (I_i^2)\right) - \left(\frac{1}{N} \sum_{i \in \text{background pixels}} I_i\right)^2 $$
 
-### 4. Scaling Noise by Beam Area
-To estimate noise more accurately in low signal-to-noise (S/N) regions, we can scale the random noise by the number of independent beams in the primary aperture:
-\[
-N_{\text{independent}} = \frac{\text{primary\_area\_deg}^2}{\text{effective\_beam\_area}}
-\]
-The random error is scaled by the ratio:
-\[
-\text{scaled\_random\_var} = \text{Var}_{\text{random}} \cdot \left(\frac{N_{\text{primary}}}{N_{\text{independent}}}\right)
-\]
+### Scaling Random Noise
+To scale the random noise by the beam area, we adjust for the number of independent beams in the primary aperture:
+$$ N_{\text{independent}} = \frac{\text{primary area in deg}^2}{\text{effective beam area}} $$
+This scales the random noise as:
+$$ \sigma_{\text{random}}^2 \left(\frac{N_{\text{primary}}}{N_{\text{independent}}}\right) $$
 
-This scaling corrects for the underestimated noise when there are significant variations in the astrophysical signal across the background.
-
-### 5. Total Variance and Final Error
-The total variance is the sum of the random and calibration variances:
-\[
-\text{Var}_{\text{total}} = \text{Var}_{\text{random}} + \text{Var}_{\text{calibration}}
-\]
-
-The final error is calculated as the standard deviation:
-\[
-\text{Error} = \sqrt{\text{Var}_{\text{total}}}
-\]
-
-### 6. Signal-to-Noise Considerations
-In high S/N regions, the calibration error dominates, while in low S/N regions, the random noise is more significant. This behavior reflects the relative contribution of each uncertainty to the total error in flux measurements.
+### Dominance of Errors
+- **High Signal-to-Noise Regions**: The calibration error dominates.
+- **Low Signal-to-Noise Regions**: The random noise dominates.
 
 
 
