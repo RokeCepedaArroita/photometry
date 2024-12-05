@@ -150,6 +150,7 @@ where:
 - **High Signal-to-Noise Regions**: Calibration errors dominate.
 - **Low Signal-to-Noise Regions**: Random noise dominates.
 
+
 ---
 
 ## **Advanced Options**
