@@ -12,7 +12,7 @@ Example usage:
 nu, flux, flux_err, source = photometry.photometry(custom_source=None, warnings_on=False, verbose=True)
 
 
-Version 1.02 [Feb 2019]
+Version 2.0 [Dec 2024]
 Roke Cepeda-Arroita
 Stuart Harper
 roke.cepeda-arroita@manchester.ac.uk

@@ -1,6 +1,6 @@
 # Aperture Photometry for HEALPix Maps
 
-This repository offers tools for performing aperture photometry on HEALPix maps, enabling flux density measurements across diverse astrophysical applications. The code is modular, customizable, and built with clarity in mind for both experienced users and newcomers to aperture photometry.
+This repository offers tools for performing aperture photometry on HEALPix maps, enabling flux density measurements across diverse astrophysical applications. The code is modular and customizable.
 
 ---
 
@@ -107,20 +107,100 @@ FREQ = 4.08E-01   FLUX = 9.39E+01   ERR = 3.87E+01
 
 ---
 
+
+## Measuring Uncertainties in Flux Calculations
+
+The flux and its associated error are calculated by summing pixel brightnesses from the primary aperture and accounting for various uncertainties. Below, we describe how the flux and errors are derived from the code and physical considerations.
+
+### 1. Primary Flux Calculation
+The primary flux is calculated as the sum of the pixel brightnesses in the aperture:
+\[
+F_{\text{primary}} = \sum_{i} I_i
+\]
+where \( I_i \) represents the intensity of the \( i \)th pixel in the primary aperture.
+
+### 2. Background Flux and Error Calculations
+The background flux is estimated using pixels outside the primary aperture, typically taken as the mean or median:
+\[
+F_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{j} I_j^{\text{background}}
+\]
+The error in this background flux, considering variance from multiple background regions, is:
+\[
+\text{Var}_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{j} \left(I_j^{\text{background}} - \langle I_{\text{background}} \rangle \right)^2
+\]
+
+### 3. Random and Calibration Error Components
+The total error in the flux calculation is derived from two main sources:
+
+#### a) Calibration Error
+The calibration error accounts for inaccuracies in the calibration of the data:
+\[
+\text{Var}_{\text{calibration}} = (F_{\text{primary}} \cdot \text{calibration\_error})^2
+\]
+
+#### b) Random Error
+The random error accounts for noise in the data and variations in the background:
+\[
+\text{Var}_{\text{random}} = \text{Var}_{\text{background}} \times N_{\text{primary}}
+\]
+where \( N_{\text{primary}} \) is the number of pixels in the primary aperture.
+
+### 4. Scaling Noise by Beam Area
+To estimate noise more accurately in low signal-to-noise (S/N) regions, we can scale the random noise by the number of independent beams in the primary aperture:
+\[
+N_{\text{independent}} = \frac{\text{primary\_area\_deg}^2}{\text{effective\_beam\_area}}
+\]
+The random error is scaled by the ratio:
+\[
+\text{scaled\_random\_var} = \text{Var}_{\text{random}} \cdot \left(\frac{N_{\text{primary}}}{N_{\text{independent}}}\right)
+\]
+
+This scaling corrects for the underestimated noise when there are significant variations in the astrophysical signal across the background.
+
+### 5. Total Variance and Final Error
+The total variance is the sum of the random and calibration variances:
+\[
+\text{Var}_{\text{total}} = \text{Var}_{\text{random}} + \text{Var}_{\text{calibration}}
+\]
+
+The final error is calculated as the standard deviation:
+\[
+\text{Error} = \sqrt{\text{Var}_{\text{total}}}
+\]
+
+### 6. Signal-to-Noise Considerations
+In high S/N regions, the calibration error dominates, while in low S/N regions, the random noise is more significant. This behavior reflects the relative contribution of each uncertainty to the total error in flux measurements.
+
+
+
+---
+
 ## **Advanced Options**
 
-- **MCMC Settings**:
-   - Configure `config_mcmc.py` for advanced statistical fitting.
-   - Supports components such as synchrotron, free-free, thermal dust, and spinning dust.
 
 - **Custom Bandpasses**:
-   - Modify `bandpasses.py` to handle instrument-specific corrections:
+   - Modify `bandpasses.py` to handle instrument-specific colour corrections:
      ```python
      from bandpasses import fastmficc
      corrected_value = fastmficc(nu=17, alpha=0.1)
      ```
 
 ---
+
+
+## 📜 Acknowledgements
+
+This project is a joint effort between:
+
+**Roke Cepeda-Arroita**  
+Email: [roke.cepeda-arroita@manchester.ac.uk](mailto:roke.cepeda-arroita@manchester.ac.uk)
+
+**Stuart Harper**  
+_Email: [stuart.harper@manchester.ac.uk](mailto:stuart.harper@manchester.ac.uk)_
+
+Version 2.0 [Dec 2024]
+
+
 
 ## **Contributing**
 
