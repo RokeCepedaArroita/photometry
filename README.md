@@ -110,40 +110,38 @@ FREQ = 4.08E-01   FLUX = 9.39E+01   ERR = 3.87E+01
 ## Measuring Uncertainties
 
 ### Primary Flux Calculation
-The primary flux is calculated by summing the pixel brightnesses within the primary aperture:
-$$F_{\text{primary}} = \sum_{i \in \text{aperture pixels}} I_i$$
-where $I_i$ is the intensity of pixel $i$.
+The primary flux is calculated by summing the pixel brightnesses within the primary aperture, subtracting the scaled background contribution:
+$$F_{\text{primary}} = \sum_{i \in \text{aperture pixels}} I_i - \bar{F}_{\text{background}} \cdot N_{\text{primary}}$$
+where:
+- $I_i$ is the flux of pixel $i$ in the primary aperture.
+- $\bar{F}_{\text{background}}$ is the mean flux of the background pixels.
+- $N_{\text{primary}}$ is the number of pixels in the primary aperture.
 
 ### Background Flux and Variance
-The background flux is calculated using either the mean or median of the background pixels:
-$$F_{\text{background}} = \frac{1}{N} \sum_{i \in \text{background pixels}} I_i$$
-where $N$ is the number of background pixels.
+The background flux is estimated using either the mean or median of the background pixels:
+$$\bar{F}_{\text{background}} = \frac{1}{N_{\text{background}}} \sum_{i \in \text{background pixels}} I_i$$
+where $N_{\text{background}}$ is the number of background pixels.
 
-To estimate the error in the background flux, we use the variance:
-$$\sigma_{\text{background}}^2 = \frac{1}{N} \sum_{i \in \text{background pixels}} (I_i - \bar{I})^2$$
-where $\bar{I}$ is the mean intensity of the background pixels.
+The random variance in the background is scaled to the size of the primary aperture:
+$$\sigma_{\text{background}}^2 = \left[\frac{1}{N_{\text{background}}} \sum_{i \in \text{background pixels}} (I_i^2) - \left(\frac{1}{N_{\text{background}}} \sum_{i \in \text{background pixels}} I_i \right)^2\right] \cdot N_{\text{primary}}$$
 
 ### Total Error Calculation
-The total error in the primary flux is obtained by combining the calibration and random variances:
+The total variance in the primary flux combines random and calibration variances:
 $$\sigma_{\text{total}}^2 = \sigma_{\text{random}}^2 + \sigma_{\text{calibration}}^2$$
 where:
 
 - **Calibration Variance**:
-$$\sigma_{\text{calibration}}^2 = (F_{\text{primary}} \cdot \text{calibration error})^2$$
+  $$\sigma_{\text{calibration}}^2 = (F_{\text{primary}} \cdot \text{calibration error})^2$$
 
-- **Random Variance**:
-$$\sigma_{\text{random}}^2 = \left(\frac{1}{N} \sum_{i \in \text{background pixels}} (I_i^2)\right) - \left(\frac{1}{N} \sum_{i \in \text{background pixels}} I_i\right)^2$$
-
-### Scaling Random Noise
-To scale the random noise by the beam area, we adjust for the number of independent beams in the primary aperture:
-$$N_{\text{independent}} = \frac{\text{primary area in deg}^2}{\text{effective beam area}}$$
-This scales the random noise as:
-$$\sigma_{\text{random}}^2 \left(\frac{N_{\text{primary}}}{N_{\text{independent}}}\right)$$
+- **Random Variance** (scaled by beam area if necessary):
+  $$\sigma_{\text{random}}^2 = \sigma_{\text{background}}^2 \cdot \frac{N_{\text{primary}}}{N_{\text{independent}}}$$
+  where:
+  - $N_{\text{independent}}$ is the number of independent beams in the primary aperture, given by:
+    $$N_{\text{independent}} = \frac{\text{primary area (deg}^2\text{)}}{\text{effective beam area (deg}^2\text{)}}$$
 
 ### Dominance of Errors
-- **High Signal-to-Noise Regions**: The calibration error dominates.
-- **Low Signal-to-Noise Regions**: The random noise dominates.
-
+- **High Signal-to-Noise Regions**: Calibration errors dominate.
+- **Low Signal-to-Noise Regions**: Random noise dominates.
 
 
 ---
