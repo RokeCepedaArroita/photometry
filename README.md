@@ -108,6 +108,8 @@ FREQ = 4.08E-01   FLUX = 9.39E+01   ERR = 3.87E+01
 
 ## Measuring Uncertainties
 
+The uncertainty in the flux of the primary aperture is a combination of calibration errors and random errors. Random errors include the noise in the input datasets, and real variations of the sky signal in the background that go into the primary aperture. In low signal to noise regions, a careful assessment of noise vs real sky signal variations must be made for an accurate estimation of the global uncertainty.
+
 ### Primary Flux Calculation
 The primary flux is calculated by summing the pixel brightnesses within the primary aperture, subtracting the scaled background contribution:
 
@@ -141,16 +143,18 @@ where:
 - **Calibration Variance**:
   $$\sigma_{\text{calibration}}^2 = (F_{\text{primary}} \cdot \text{calibration error})^2$$
 
-- **Random Variance** (scaled by beam area if necessary):
+- **Random Variance** (scaled by beam area if `scale_random_noise_by_beam_area=True`, and scaled to the number of pixels in the primary aperture by default):
   $$\sigma_{\text{random}}^2 = \sigma_{\text{background}}^2 \cdot \frac{N_{\text{primary}}}{N_{\text{independent}}}$$
 
   where:
   - $N_{\text{independent}}$ is the number of independent beams in the primary aperture, given by:
     $$N_{\text{independent}} = \frac{\text{primary area (deg}^2\text{)}}{\text{effective beam area (deg}^2\text{)}}$$
 
+  the `scale_random_noise_by_beam_area=True` will give an accurate estimation in regions that are map-noise dominated, and an overestimation in regions where there is significant variation of the sky signal in the background. In contrast, the default scaling to the number of pixels in the primary will typically give an underestimation of the random variance.
+
 ### Dominance of Errors
 - **High Signal-to-Noise Regions**: Calibration errors dominate.
-- **Low Signal-to-Noise Regions**: Random noise dominates.
+- **Low Signal-to-Noise Regions**: Random noise dominates, so a careful interpretation of the random uncertainties is necessary.
 
 
 ---
