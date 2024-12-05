@@ -123,7 +123,8 @@ where:
 ### Background Flux and Variance
 The background flux is estimated using either the mean or median of the background pixels:
 
-$\bar{F}_{\mathrm{background}} = \frac{1}{N_{\text{background}}} \sum_{i \in \text{background\_pixels}} I_i$
+$$\bar{F}_{\mathrm{background}} = \frac{1}{N_{\text{background}}} 
+\sum_{i \in \text{background\_pixels}} I_i$$
 
 where $N_{\text{background}}$ is the number of background pixels.
 
