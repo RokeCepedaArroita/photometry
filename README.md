@@ -143,14 +143,14 @@ where:
 - **Calibration Variance**:
   $$\sigma_{\text{calibration}}^2 = (F_{\text{primary}} \cdot \text{calibration error})^2$$
 
-- **Random Variance** (scaled by beam area if `scale_random_noise_by_beam_area=True`, and scaled to the number of pixels in the primary aperture by default):
+- **Random Variance** (scaled by beam area if `scale_random_noise_by_beam_area = True`, and scaled to the number of pixels in the primary aperture by default):
   $$\sigma_{\text{random}}^2 = \sigma_{\text{background}}^2 \cdot \frac{N_{\text{primary}}}{N_{\text{independent}}}$$
 
   where:
   - $N_{\text{independent}}$ is the number of independent beams in the primary aperture, given by:
     $$N_{\text{independent}} = \frac{\text{primary area (deg}^2\text{)}}{\text{effective beam area (deg}^2\text{)}}$$
 
-  the `scale_random_noise_by_beam_area=True` will give an accurate estimation in regions that are map-noise dominated, and an overestimation in regions where there is significant variation of the sky signal in the background. In contrast, the default scaling to the number of pixels in the primary will typically give an underestimation of the random variance.
+  the `scale_random_noise_by_beam_area = True` treatment will give an accurate estimation in regions that are map-noise dominated, and an overestimation in regions where there is significant variation of the sky signal in the background. In contrast, the default scaling to the number of pixels in the primary will typically give an underestimation of the random variance.
 
 ### Dominance of Errors
 - **High Signal-to-Noise Regions**: Calibration errors dominate.
@@ -162,7 +162,7 @@ where:
 ## **Advanced Options**
 
 
-- **Custom Bandpasses**:
+- **Colour corrections**:
    - Modify `bandpasses.py` to handle instrument-specific colour corrections:
      ```python
      from bandpasses import fastmficc
