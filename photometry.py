@@ -20,7 +20,7 @@ stuart.harper@manchester.ac.uk
 '''
 
 
-def photometry(custom_source=None, warnings_on=False, verbose=True):
+def photometry(custom_source=None, warnings_on=False, verbose=True, rescale_random_errors=None):
 
 
     # Import core modules
@@ -85,7 +85,7 @@ def photometry(custom_source=None, warnings_on=False, verbose=True):
 
 
         # Get Flux from aperphot
-        flux, err, nu = APObj.AperPhot(lon, lat, target, mode=mode, throw_NaN=throw_NaN, scale_random_noise_by_beam_area=scale_random_noise_by_beam_area, effective_beam_area=effective_beam_area)
+        flux, err, nu = APObj.AperPhot(lon, lat, target, mode=mode, throw_NaN=throw_NaN, scale_random_noise_by_beam_area=scale_random_noise_by_beam_area, effective_beam_area=effective_beam_area, rescale_random_errors=rescale_random_errors)
 
         if not isinstance(target['AUX'], type(None)):
             ancil = np.loadtxt(target['AUX'])

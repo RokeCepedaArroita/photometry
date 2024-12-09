@@ -178,7 +178,7 @@ class aperphot():
         return conversions[mapinfo['unit']]
 
 
-    def AperPhot(self, _lon, _lat, target, mode='median', throw_NaN=True, scale_random_noise_by_beam_area=False, effective_beam_area=1.13309003546):
+    def AperPhot(self, _lon, _lat, target, mode='median', throw_NaN=True, scale_random_noise_by_beam_area=False, effective_beam_area=1.13309003546, rescale_random_errors=None):
         '''
         lon    - 'longitude of pixel coordinates''
         lat    - latitude of pixel coordinates
@@ -307,6 +307,10 @@ class aperphot():
                 random_var = random_var * (nPix[pixType]/nPix_independent)
 
 
+            # Rescale random errors if the setting is toggled
+            if rescale_random_errors is not None:
+                random_var = random_var*(rescale_random_errors**2) # square to scale variance correctly
+
 
 
             # Add up the variances to get the total variance from which the final error is calculated
@@ -428,6 +432,9 @@ class aperphot():
                         except:
 
                             print('Could not produce histogram of {}'.format(self.maps[j]['name']))
+
+        if rescale_random_errors is not None:
+            print(f"Multiplied random photometry errors by {rescale_random_errors}.")
 
 
         # Ensure the directory exists
