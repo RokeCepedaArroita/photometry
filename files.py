@@ -50,6 +50,19 @@ Reich = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/512_60.00smooth
          'CALERR':(0.05**2+beam_eff_err**2)**0.5}
 
 
+Reich_rescaled_calibration = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/512_60.00smoothed_reichlb21_1.42_512_1986_rescaled_multiplied_by_155_pointsources.fits',
+         'inst':'Reich',
+         'frequency':1.42,
+         'resolution':1.1331*(np.pi/180.)**2,
+         'unit':'mK',
+         'nside':512,
+         'fmt':'o',
+         'color':'#31D63F',
+         'CALERR':(0.05**2+beam_eff_err**2)**0.5}
+
+
+
+
 Jonas = {'name':'/home/rcepeda/Desktop/data/ancillary_data/others/512_60.00smoothed_jonas98_2.326_512_1998_K.fits',
          'inst':'Jonas',
          'frequency':2.326,
@@ -106,6 +119,17 @@ CBASS_NEW = {'name':'/home/rcepeda/Desktop/data/cbass/v33b_deconvolution_oldbeam
           'color':'#FDE5E5',
           'CALERR':0.03}
 
+# BELOW RICHARD'S MAP BUT WITH THE NEW BEAM DECONVOLUTION
+CBASS_early_DR1 = {'name':'/home/rcepeda/Desktop/data/cbass/cbass_DR1_NEWBEAM_deconvolved_01deg_1024_G_intensity.fits',
+          'inst':'C-BASS',
+          'frequency':4.76,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'K',
+          'nside':1024,
+          'fmt':'o',
+          'color':'#FDE5E5',
+          'CALERR':0.03}
+
 
 
 # QUIJOTE Data Release
@@ -141,7 +165,7 @@ quijote17_datarelease = {'name':'/home/rcepeda/Desktop/data/quijote/QUIJOTE-MFI-
                          'bandpass':bandpasses.fastmficc, # TODO UPDATE THESE -- NOT APPLIED AT THE MOMENT
                          'fmt':'*',
                          'color':'#9900F2',
-                         'CALERR':0.10}
+                         'CALERR':0.05}
 
 quijote19_datarelease = {'name':'/home/rcepeda/Desktop/data/quijote/QUIJOTE-MFI-Release1/quijote_mfi_smth_skymap_19ghz_512_dr1.fits',
                          'inst':'MFI',
@@ -152,7 +176,7 @@ quijote19_datarelease = {'name':'/home/rcepeda/Desktop/data/quijote/QUIJOTE-MFI-
                          'bandpass':bandpasses.fastmficc, # TODO UPDATE THESE -- NOT APPLIED AT THE MOMENT
                          'fmt':'*',
                          'color':'#9900F2',
-                         'CALERR':0.15}
+                         'CALERR':0.05}
 
 
 
@@ -405,7 +429,19 @@ wmapK = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
         'CALERR':0.01,
         'color':'#0059F2'}
 
-wmapKa= {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_Ka_v5.fits',
+wmapK_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/023-WMAP_K_1deg_nside512_CMBoff_KCMB.fits',
+        'inst':'WMAP',
+        'frequency':22.8,
+        'resolution':1.1331*(np.pi/180.)**2,
+        'unit':'KCMB',
+        'nside':512,
+        'fmt':'o',
+        'bandpass':bandpasses.fastwmapcc,
+        'CALERR':0.01,
+        'color':'#0059F2'}
+
+
+wmapKa = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_Ka_v5.fits',
          'inst':'WMAP',
          'frequency':33.,
          'resolution':1.1331*(np.pi/180.)**2,
@@ -415,6 +451,18 @@ wmapKa= {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
          'bandpass':bandpasses.fastwmapcc,
          'CALERR':0.01,
          'color':'#0059F2'}
+
+wmapKa_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/030-WMAP_Ka_1deg_nside512_CMBoff_KCMB.fits',
+         'inst':'WMAP',
+         'frequency':33.,
+         'resolution':1.1331*(np.pi/180.)**2,
+         'unit':'KCMB',
+         'nside':512,
+         'fmt':'o',
+         'bandpass':bandpasses.fastwmapcc,
+         'CALERR':0.01,
+         'color':'#0059F2'}
+
 
 wmapQ = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_Q_v5.fits',
          'inst':'WMAP',
@@ -427,6 +475,18 @@ wmapQ = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
          'CALERR':0.01,
          'color':'#0059F2'}
 
+wmapQ_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/040-WMAP_Q_1deg_nside512_CMBoff_KCMB.fits',
+         'inst':'WMAP',
+         'frequency':40.7,
+         'resolution':1.1331*(np.pi/180.)**2,
+         'unit':'KCMB',
+         'nside':512,
+         'fmt':'o',
+         'bandpass':bandpasses.fastwmapcc,
+         'CALERR':0.01,
+         'color':'#0059F2'}
+
+
 wmapV = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_V_v5.fits',
          'inst':'WMAP',
          'frequency':60.7,
@@ -438,11 +498,34 @@ wmapV = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
          'CALERR':0.01,
          'color':'#0059F2'}
 
+wmapV_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/060-WMAP_V_1deg_nside512_CMBoff_KCMB.fits',
+         'inst':'WMAP',
+         'frequency':60.7,
+         'resolution':1.1331*(np.pi/180.)**2,
+         'unit':'KCMB',
+         'nside':512,
+         'fmt':'o',
+         'bandpass':bandpasses.fastwmapcc,
+         'CALERR':0.01,
+         'color':'#0059F2'}
+
+
 wmapW = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_W_v5.fits',
          'inst':'WMAP',
          'frequency':93.6,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'mKCMB',
+         'nside':512,
+         'fmt':'o',
+         'bandpass':bandpasses.fastwmapcc,
+         'CALERR':0.01,
+         'color':'#0059F2'}
+
+wmapW_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/090-WMAP_W_1deg_nside512_CMBoff_KCMB.fits',
+         'inst':'WMAP',
+         'frequency':93.6,
+         'resolution':1.1331*(np.pi/180.)**2,
+         'unit':'KCMB',
          'nside':512,
          'fmt':'o',
          'bandpass':bandpasses.fastwmapcc,
@@ -461,9 +544,9 @@ lfi30 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_30_
           'CALERR':0.01,
           'color':'#59F200'}
 
-lfi44 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_44_512_smth.fits',
+lfi30_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/processed/npipe6v20_030_1deg_nside512_CMBoff_KCMB.fits',
           'inst':'Planck',
-          'frequency':44.,
+          'frequency':28.4,
           'resolution':1.1331*(np.pi/180.)**2,
           'unit':'KCMB',
           'bandpass':bandpasses.fastlficc,
@@ -471,10 +554,57 @@ lfi44 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_44_
           'fmt':'s',
           'CALERR':0.01,
           'color':'#59F200'}
+
+lfi30_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/planck_030_1deg_nside512_CMBoff_KCMB.fits',
+          'inst':'Planck',
+          'frequency':28.4,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'bandpass':bandpasses.fastlficc,
+          'nside':512,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
+
+
+lfi44 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_44_512_smth.fits',
+          'inst':'Planck',
+          'frequency':44.1,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'bandpass':bandpasses.fastlficc,
+          'nside':512,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
+lfi44_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/processed/npipe6v20_044_1deg_nside512_CMBoff_KCMB.fits',
+          'inst':'Planck',
+          'frequency':44.1,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'bandpass':bandpasses.fastlficc,
+          'nside':512,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
+lfi44_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/planck_044_1deg_nside512_CMBoff_KCMB.fits',
+          'inst':'Planck',
+          'frequency':44.1,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'bandpass':bandpasses.fastlficc,
+          'nside':512,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
 
 lfi70 =  {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_70_512_smth.fits',
           'inst':'Planck',
-          'frequency':70.,
+          'frequency':70.4,
           'resolution':1.1331*(np.pi/180.)**2,
           'unit':'KCMB',
           'nside':512,
@@ -483,7 +613,30 @@ lfi70 =  {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/LFI_SkyMap_70
           'CALERR':0.01,
           'color':'#59F200'}
 
-hfi100 = {'name':'//home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_100_512_smth.fits',
+lfi70_npipe =  {'name':'/home/rcepeda/Desktop/data/npipe/processed/npipe6v20_070_1deg_nside512_CMBoff_KCMB.fits',
+          'inst':'Planck',
+          'frequency':70.4,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'bandpass':bandpasses.fastlficc,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
+lfi70_cosmoglobe =  {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/planck_070_1deg_nside512_CMBoff_KCMB.fits',
+          'inst':'Planck',
+          'frequency':70.4,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'bandpass':bandpasses.fastlficc,
+          'fmt':'s',
+          'CALERR':0.01,
+          'color':'#59F200'}
+
+
+hfi100 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_100_512_smth.fits',
           'inst':'Planck',
           'frequency':100.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -493,6 +646,18 @@ hfi100 = {'name':'//home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_1
           'color':'#59F200',
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
+
+hfi100_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_100ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':100.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
 
 hfi143 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_143_512_smth.fits',
           'inst':'Planck',
@@ -505,6 +670,18 @@ hfi143 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_14
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
+hfi143_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_143ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':143.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
+
 hfi217 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_217_512_smth.fits',
           'inst':'Planck',
           'frequency':217.,
@@ -515,6 +692,18 @@ hfi217 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_21
           'color':'#59F200',
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
+
+hfi217_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_217ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':217.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
 
 hfi353 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_353_512_smth.fits',
           'inst':'Planck',
@@ -527,6 +716,18 @@ hfi353 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_35
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.013}
 
+hfi353_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_353ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':353.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.013}
+
+
 hfi545 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/HFI_SkyMap_545_512_smth.fits',
           'inst':'Planck',
           'frequency':545.,
@@ -538,6 +739,18 @@ hfi545 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/HFI_SkyMap_545
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.060}
 
+hfi545_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_545ghz_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':545.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.060}
+
+
 hfi857 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/HFI_SkyMap_857_512_smth.fits',
           'inst':'Planck',
           'frequency':857.,
@@ -548,6 +761,19 @@ hfi857 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/HFI_SkyMap_857
           'color':'#59F200',
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.064}
+
+hfi857_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_857ghz_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':857.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.064}
+
+
 
 
 # DIRBE Maps

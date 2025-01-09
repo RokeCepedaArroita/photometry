@@ -316,6 +316,8 @@ class aperphot():
             # Add up the variances to get the total variance from which the final error is calculated
             err[j] = random_var + calibration_var # This is the variance, so at the end the sqrt is returned for a standard deviation
 
+            
+
 
 
 
