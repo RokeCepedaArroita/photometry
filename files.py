@@ -658,6 +658,17 @@ hfi100_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_100
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
+hfi100_npipe_MJysr = {'name':'/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_100ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':100.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
 
 hfi143 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_143_512_smth.fits',
           'inst':'Planck',
@@ -670,11 +681,22 @@ hfi143 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_14
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
-hfi143_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_143ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+hfi143_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_143ghz_zls_dips_smth1deg_nside512.fits',
           'inst':'Planck',
           'frequency':143.,
           'resolution':1.1331*(np.pi/180.)**2,
           'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
+hfi143_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_143ghz_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':143.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
           'nside':512,
           'fmt':'s',
           'color':'#59F200',
@@ -704,6 +726,17 @@ hfi217_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_21
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
+hfi217_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_217ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':217.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
 
 hfi353 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_353_512_smth.fits',
           'inst':'Planck',
@@ -721,6 +754,17 @@ hfi353_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_35
           'frequency':353.,
           'resolution':1.1331*(np.pi/180.)**2,
           'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.013}
+
+hfi353_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_353ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':353.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
           'nside':512,
           'fmt':'s',
           'color':'#59F200',
@@ -750,6 +794,17 @@ hfi545_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_545
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.060}
 
+hfi545_npipe_MJysr = {'name':'/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_545ghz_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':545.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.060}
+
 
 hfi857 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBon/HFI_SkyMap_857_512_smth.fits',
           'inst':'Planck',
@@ -773,7 +828,16 @@ hfi857_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_857
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.064}
 
-
+hfi857_npipe_MJysr = {'name':'/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_857ghz_zls_dips_smth1deg_nside512_MJysr.fits',
+          'inst':'Planck',
+          'frequency':857.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'MJysr',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.064}
 
 
 # DIRBE Maps
