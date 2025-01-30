@@ -20,7 +20,7 @@ stuart.harper@manchester.ac.uk
 '''
 
 
-def photometry(custom_source=None, warnings_on=False, verbose=True, rescale_random_errors=None):
+def photometry(custom_source=None, warnings_on=False, verbose=True, rescale_random_errors=None, throw_NaN=None):
 
 
     # Import core modules
@@ -32,7 +32,12 @@ def photometry(custom_source=None, warnings_on=False, verbose=True, rescale_rand
 
     # Import input configuration file
 
-    from config_phot import targets, maps, saveAperdir, save_aper, save_hist, save_fluxes, mode, throw_NaN, effective_beam_area, scale_random_noise_by_beam_area
+    from config_phot import targets, maps, saveAperdir, save_aper, save_hist, save_fluxes, mode, effective_beam_area, scale_random_noise_by_beam_area
+    from config_phot import throw_NaN as config_throw_NaN
+
+    # Use function argument if provided, otherwise use config value
+
+    throw_NaN = throw_NaN if throw_NaN is not None else config_throw_NaN
 
 
     # If we have a custom source then set its properties

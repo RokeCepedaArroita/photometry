@@ -466,7 +466,7 @@ wmapKa_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/030
 
 wmapQ = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_Q_v5.fits',
          'inst':'WMAP',
-         'frequency':40.7,
+         'frequency':40.6,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'mKCMB',
          'nside':512,
@@ -477,7 +477,7 @@ wmapQ = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
 
 wmapQ_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/040-WMAP_Q_1deg_nside512_CMBoff_KCMB.fits',
          'inst':'WMAP',
-         'frequency':40.7,
+         'frequency':40.6,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'KCMB',
          'nside':512,
@@ -489,7 +489,7 @@ wmapQ_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/040-
 
 wmapV = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_V_v5.fits',
          'inst':'WMAP',
-         'frequency':60.7,
+         'frequency':60.8,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'mKCMB',
          'nside':512,
@@ -500,7 +500,7 @@ wmapV = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
 
 wmapV_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/060-WMAP_V_1deg_nside512_CMBoff_KCMB.fits',
          'inst':'WMAP',
-         'frequency':60.7,
+         'frequency':60.8,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'KCMB',
          'nside':512,
@@ -512,7 +512,7 @@ wmapV_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/060-
 
 wmapW = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth_imap_r9_9yr_W_v5.fits',
          'inst':'WMAP',
-         'frequency':93.6,
+         'frequency':93.5,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'mKCMB',
          'nside':512,
@@ -523,7 +523,7 @@ wmapW = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/wmap_band_smth
 
 wmapW_cosmoglobe = {'name':'/home/rcepeda/Desktop/data/cosmoglobe/processed/090-WMAP_W_1deg_nside512_CMBoff_KCMB.fits',
          'inst':'WMAP',
-         'frequency':93.6,
+         'frequency':93.5,
          'resolution':1.1331*(np.pi/180.)**2,
          'unit':'KCMB',
          'nside':512,
@@ -647,7 +647,7 @@ hfi100 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_10
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
-hfi100_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_100ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+hfi100_cocorr = {'name':'/home/rcepeda/Desktop/data/co_ghosh24/ghosh_co_subtracted_pr3_maps/planck_full_100ghz_corrcoghosh24_zls_smth1deg_nside512.fits',
           'inst':'Planck',
           'frequency':100.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -658,7 +658,19 @@ hfi100_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_100
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
-hfi100_npipe_MJysr = {'name':'/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_100ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+
+hfi100_npipe = {'name':'/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_100ghz_corrcoghosh24_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':100.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
+hfi100_npipe_MJysr = {'name':'/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_100ghz_corrcoghosh24_zls_dips_smth1deg_nside512_MJysr.fits',
           'inst':'Planck',
           'frequency':100.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -715,7 +727,7 @@ hfi217 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_21
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
-hfi217_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_217ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+hfi217_cocorr = {'name':'/home/rcepeda/Desktop/data/co_ghosh24/ghosh_co_subtracted_pr3_maps/planck_full_217ghz_corrcoghosh24_zls_smth1deg_nside512.fits',
           'inst':'Planck',
           'frequency':217.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -726,7 +738,18 @@ hfi217_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_21
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.01}
 
-hfi217_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_217ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+hfi217_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_217ghz_corrcoghosh24_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':217.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.01}
+
+hfi217_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_217ghz_corrcoghosh24_zls_dips_smth1deg_nside512_MJysr.fits',
           'inst':'Planck',
           'frequency':217.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -749,7 +772,7 @@ hfi353 = {'name':'/home/rcepeda/Desktop/data/ancillary_data/CMBoff/HFI_SkyMap_35
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.013}
 
-hfi353_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_353ghz_corrco1_zls_dips_smth1deg_nside512.fits',
+hfi353_cocorr = {'name':'/home/rcepeda/Desktop/data/co_ghosh24/ghosh_co_subtracted_pr3_maps/planck_full_353ghz-psb_corrcoghosh24_zls_smth1deg_nside512.fits',
           'inst':'Planck',
           'frequency':353.,
           'resolution':1.1331*(np.pi/180.)**2,
@@ -760,7 +783,18 @@ hfi353_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_35
           'bandpass':bandpasses.fasthficc,
           'CALERR':0.013}
 
-hfi353_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_353ghz_corrco1_zls_dips_smth1deg_nside512_MJysr.fits',
+hfi353_npipe = {'name': '/home/rcepeda/Desktop/data/npipe/ricardo/planck_full_353ghz_corrcoghosh24_zls_dips_smth1deg_nside512.fits',
+          'inst':'Planck',
+          'frequency':353.,
+          'resolution':1.1331*(np.pi/180.)**2,
+          'unit':'KCMB',
+          'nside':512,
+          'fmt':'s',
+          'color':'#59F200',
+          'bandpass':bandpasses.fasthficc,
+          'CALERR':0.013}
+
+hfi353_npipe_MJysr = {'name': '/home/rcepeda/Desktop/data/npipe/mjysr/planck_full_353ghz_corrcoghosh24_zls_dips_smth1deg_nside512_MJysr.fits',
           'inst':'Planck',
           'frequency':353.,
           'resolution':1.1331*(np.pi/180.)**2,
